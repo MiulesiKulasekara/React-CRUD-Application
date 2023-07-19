@@ -3,14 +3,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Viewall = () => {
   const [user, setUser] = useState([]);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -45,9 +42,9 @@ const Viewall = () => {
     <Container fluid>
       <Row>
         <Col>
-          <Button variant="primary">
-            <Link to={"/adduser"}>Add a User</Link>
-          </Button>
+          <Link className="btn btn-primary" to={"/adduser"}>
+            Add a User
+          </Link>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -61,22 +58,25 @@ const Viewall = () => {
             <tbody>
               {user.map((user, index) => {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{user.id}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>
-                      <Button variant="success">
-                        <Link to={"/updateuser"}>Update</Link>
-                      </Button>
+                      <Link
+                        className="btn btn-success"
+                        to={`/updateuser/${user.id}`}
+                      >
+                        Update
+                      </Link>
                       {/* <Button variant="danger"><Link to={"/deleteauser"}>Delete</Link></Button> */}
-                      <Button
+                      <Link
                         onClick={(e) => handleDelete(user.id)}
-                        variant="danger"
+                        className="btn btn-danger"
                       >
                         Delete
-                      </Button>
+                      </Link>
                     </td>
                   </tr>
                 );

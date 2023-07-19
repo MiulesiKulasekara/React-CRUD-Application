@@ -3,7 +3,6 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import Viewall from './components/Viewall';
 import Adduser from './components/Adduser';
 import UpdateAuser from './components/UpdateAuser';
-import DeleteUser from './components/DeleteUser';
 
 //http://localhost:3000/users
 
@@ -17,12 +16,8 @@ const router = createBrowserRouter([
     element: <Adduser/>
   },
   {
-    path: "/updateuser",
+    path: "/updateuser/:id",
     element: <UpdateAuser/>
-  },
-  {
-    path: "/deleteauser",
-    element: <DeleteUser/>
   }
 ])
 
